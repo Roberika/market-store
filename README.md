@@ -4,7 +4,7 @@ End of semester project for Web Programming for Rivaldo and Robert
 Robert Antonius 2125250057
 Rivaldo         2125250065
 
-#How to Setup
+# How to Setup
 1. Install XAMPP 8.2.0 
 2. Hidupkan server Apache dan phpMyAdmin dari XAMPP Control
 3. Masukkan file project ke folder “htdocs” XAMPP
