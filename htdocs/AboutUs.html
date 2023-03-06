@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Among Us</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+
+        .title {
+            position: relative;
+            left: 2cm;
+            top: 0.5cm;
+            color: white;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 1.5cm;
+            z-index: 1;
+        }
+
+        .header {
+            border-radius: 0.5cm;
+            background-color: black;
+            width: 100%;
+            height: 3cm;
+            z-index: -2;
+            position: relative;
+            top: -0.7cm;
+        }
+
+        .content {
+            border-radius: 0.5cm;
+            background-color: black;
+            width: 100%;
+            position: relative;
+            height: 10cm;
+        }
+
+        .footer {
+            position: relative;
+            top: 0.3cm;
+            border-radius: 0.5cm;
+            left: 14cm;
+            background-color: black;
+            width: 8cm;
+            height: 3cm;
+        }
+
+        .profile-left {
+            position: relative;
+            top: -4cm;
+            left: 8.5cm;
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: white;
+        }
+
+        .profile-right {
+            position: relative;
+            top: -7cm;
+            left: 25.5cm;
+            font-size: 20px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: white;
+        }
+
+        .header-rightline {
+            margin-right: 1cm;
+            margin-left: 8.5cm;
+            position: relative;
+            top: -1.4cm;
+            height: 5px;
+            background-color: white;
+            z-index: 0;
+        }
+
+        .header-leftline {
+            margin-left: 0.4cm;
+            width: 47px;
+            position: relative;
+            height: 5px;
+            z-index: 0;
+            background-color: white;
+            top: 1.9cm;
+        }
+
+        .vertical-left {
+            border-left: 1px solid white;
+            height: 8cm;
+            position: absolute;
+            top: 1cm;
+            left: 8cm;
+        }
+
+        .vertical-right {
+            border-left: 1px solid white;
+            height: 8cm;
+            position: absolute;
+            top: 1cm;
+            left: 25cm;
+        }
+
+        .avatar-left {
+            position: relative;
+            top: 2cm;
+            left: 1cm;
+            width: 6cm;
+
+        }
+
+        .avatar-right {
+            position: absolute;
+            top: 2cm;
+            left: 18cm;
+            width: 6cm;
+        }
+
+        .background-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            top: -0.1cm;
+            left: -0.1cm;
+        }
+
+        .logo-image {
+            position: fixed;
+            top: 14.8cm;
+            left: 17cm;
+            margin: auto;
+        }
+
+        .footer-top {
+            position: absolute;
+            color: red;
+            top: 0.45cm;
+            left: 1.2cm;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .footer-bottom {
+            position: absolute;
+            color: aqua;
+            top: 0.4cm;
+            left: 5cm;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="resources/vecteezy_white-background_dp1220.jpg" class="background-image" alt="">
+    <hr class="header-leftline">
+    <div class="header">
+        <strong>
+            <h1 class="title">About Us</h1>
+        </strong>
+        <hr class="header-rightline">
+    </div>
+
+    <div class="content">
+        <img src="resources/foto_rivaldo.jpg" class="avatar-left" alt="Rivaldo">
+        <div class="vertical-left"></div>
+        <p class="profile-left">
+            Name &emsp;&emsp;&nbsp;&nbsp;: Rivaldo
+            <br>
+            Occupation : MDP University Student
+            <br>
+            Hobby &emsp;&emsp;&nbsp;: Coding, Playing video <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;games, Reading
+        </p>
+        <img src="resources/foto_robert.jpeg" class="avatar-right" alt="Robert">
+        <div class="vertical-right"></div>
+        <p class="profile-right">
+            Name &emsp;&emsp;&nbsp;&nbsp;: Robert
+            <br>
+            Occupation : MDP University Student
+            <br>
+            Hobby &emsp;&emsp;&nbsp;: Programming, RPGs<br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;Fantasy genre
+        </p>
+    </div>
+
+    <div class="footer">
+        <h1 class="footer-top">The</h3>
+            <a href="home.html" class="logo-image">
+                <img src="resources/The_StoreLogo3.png" alt="The_Store"
+                    style="width: fit-content; height: 2cm; padding: 10px;">
+            </a>
+            <h1 class="footer-bottom">Store</h3>
+    </div>
+</body>
+
+</html>

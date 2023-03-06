@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding New Item</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: aliceblue;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .greeting {
+            position: relative;
+            left: 3cm;
+            top: -2.2cm;
+            width: fit-content;
+            font-family: initial;
+        }
+
+        .background-image {
+            position: absolute;
+            width: 30cm;
+            right: 0cm;
+            bottom: -5cm;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body onload="setGreeting()">
+    <div class="row">
+        <a href="home.html" class="col">
+            <img src="resources/The_StoreLogo3.png" alt="The_Store"
+                style="width: fit-content; height: 3cm; padding: 10px;">
+        </a>
+        <h1 class="greeting col-9" id="greeting"></h1>
+
+    </div>
+    <img src="resources/Abstract triiangle.png" class="background-image" alt="border">
+
+
+    <form class="container-fluid needs-validation form" novalidate>
+        <div class="row mb-3">
+            <label for="inputTitle" class="col-sm-2 col-form-label">Judul Item</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputTitle" value="" required>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputKategori" class="col-sm-2 col-form-label">Kategori item</label>
+            <div class="col-sm-5">
+                <select class="form-select" id="inputKategori" aria-label="Default select example" required>
+                    <option value="1">Alat Rumah Tangga</option>
+                    <option value="2">Buku</option>
+                    <option value="3">Teknologi</option>
+                    <option value="4">Alat Sekolah</option>
+                    <option value="5">Alat Furniture</option>
+                    <option value="6">Alat Kantor</option>
+                    <option value="7">Alat Kamar Mandi</option>
+                    <option value="8">Alat Peliharaan</option>
+                    <option value="99" selected>Other</option>
+                </select>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="inputDetail" class="form-label">Description</label>
+            <textarea class="form-control" id="inputDetail" rows="5" required></textarea>
+            <div class="valid-feedback">
+                Confirmed!
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputImageURL" class="col-sm-2 col-form-label">URL Gambar Produk</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputImageURL" value="" required>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputLinkURL" class="col-sm-2 col-form-label">URL Produk</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="inputLinkURL" value="" required>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div id="response"></div>
+        <button type="button" class="btn btn-primary m-auto" onclick="addItem()">Add Item</button>
+        <br><br>
+    </form>
+    <script>
+        const inputTitle = document.getElementById('inputTitle');
+        const inputDetail = document.getElementById('inputDetail');
+        const inputImageURL = document.getElementById('inputImageURL');
+        const inputLinkURL = document.getElementById('inputLinkURL');
+        const inputKategori = document.getElementById('inputKategori');
+        const username = sessionStorage.getItem("username");
+        const authToken = sessionStorage.getItem('authToken');
+        const lastLogin = sessionStorage.getItem('lastLogin');
+
+        function setGreeting() {
+            if (username == null) {
+                window.location.replace("login.html");
+                return;
+            }
+            document.getElementById("greeting").innerHTML = "Adding items as " + username;
+        }
+
+        function addItem() {
+            let u = username;
+            let a = authToken;
+            let date = lastLogin;
+            let t = inputTitle.value;
+            let d = inputDetail.value.replace(/\n\r?/g, '<br />').replace(/'/g, '&lsquo;');
+            let i = inputImageURL.value;
+            let l = inputLinkURL.value;
+            let k = inputKategori.value;
+            let data = "username=" + u + "&authToken=" + a + "&lastLogin=" + date + "&title=" + t + "&detail=" + d +
+                "&typeID=" + k + "&imageURL=" + i + "&linkURL=" + l;
+
+            var urlCheck = "check.php";
+            var xhrCheck = new XMLHttpRequest();
+            xhrCheck.onload = function () {
+                const responseCheck = this.responseText;
+                if (responseCheck == 'True') {
+                    //document.getElementById("response").innerHTML =
+                    //    `<a class='text-decoration-none text-dark' href='./AddItems.html'>Successfully authenticate self.</a>`;
+                    var urlAdd = "add.php";
+                    var xhrAdd = new XMLHttpRequest();
+                    xhrAdd.onload = function () {
+                        const responseAdd = this.responseText;
+                        if (responseAdd == 'True') {
+                            //document.getElementById("response").innerHTML =
+                            //    `<a class='text-decoration-none text-dark' href='./AddItems.html'>Successfully added item.</a>`;
+                        } else {
+                            document.getElementById("response").innerHTML =
+                                `<a class='text-decoration-none text-dark' href='./AddItems.html'>Registration failed due to ${responseAdd} Please try again.</a>`;
+                        }
+                    }
+                    xhrAdd.open("GET", urlAdd + "?" + data, true);
+                    xhrAdd.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                    xhrAdd.send(data);
+                } else {
+                    document.getElementById("response").innerHTML =
+                        `<a class='text-decoration-none text-dark' href='./login.html'>Authentication failed due to ${responseCheck} Please try again.</a>`;
+                }
+            }
+            xhrCheck.open("GET", urlCheck + "?" + data, true);
+            xhrCheck.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhrCheck.send(data);
+        }
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+
+</html>

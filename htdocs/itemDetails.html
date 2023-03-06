@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=page-title>Item Dpage-title">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.js"></script>
+    <title>Item Details</title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        .content-container {
+            background-color: grey;
+        }
+
+        .content-container h2 {
+            color: white;
+        }
+
+        .content-container p {
+            color: white;
+        }
+
+        #display-title {
+            display: inline-block;
+        }
+
+        .page-title {
+            display: inline-block;
+        }
+
+        /* only animate if the device supports hover */
+        @media (hover: hover) {
+            #creditcard {
+                /*  set start position */
+                transform: translateY(110px);
+                transition: transform 0.1s ease-in-out;
+                /*  set transition for mouse enter & exit */
+            }
+
+            #money {
+                /*  set start position */
+                transform: translateY(180px);
+                transition: transform 0.1s ease-in-out;
+                /*  set transition for mouse enter & exit */
+            }
+
+            button:hover #creditcard {
+                transform: translateY(0px);
+                transition: transform 0.2s ease-in-out;
+                /*  overide transition for mouse enter */
+            }
+
+            button:hover #money {
+                transform: translateY(0px);
+                transition: transform 0.3s ease-in-out;
+                /*  overide transition for mouse enter */
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-0.25rem);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .link-button:hover .link-button-text span {
+            transform: translateY(-0.25rem);
+            transition: transform .2s ease-in-out;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+
+        .link-button:active {
+            transform: translateY(1px);
+        }
+
+        .link-button-svg {
+            display: inline-block;
+            overflow: visible;
+            height: 140%;
+            min-width: 70px;
+            margin-top: -250%;
+            margin-left: -400%;
+            ;
+        }
+
+        .link-button {
+            overflow: visible;
+            margin-left: 10px;
+            border: none;
+            outline: none;
+            background-color: purple;
+            padding: 0.5rem 0rem 0.2rem 0rem;
+            border-radius: 8px;
+            letter-spacing: 0.7px;
+            background-color: #5086bd;
+            color: #fff;
+            font-size: 21px;
+            font-family: "Lato", sans-serif;
+            cursor: pointer;
+            box-shadow: rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+        }
+
+        .logo-container {
+            width: fit-content;
+        }
+
+        .logo-container a {
+            display: block;
+            width: fit-content;
+        }
+
+        .logo-container a img {
+            height: 3cm;
+        }
+
+        .title-container {
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body onload="loadItem()">
+    <div class="header-container d-block row-1 mt-3">
+        <div class="logo-container d-inline-block col align-top pe-0 ps-5">
+            <a href="home.html">
+                <img src="resources/The_StoreLogo3.png" alt="The Store" style="height: 2.2cm;">
+            </a>
+        </div>
+        <div class="title-container col d-inline-block align-top">
+            <h1 id="display-title">Item Name</h1><br>
+        </div>
+    </div>
+    <hr>
+    <div class="content-container clearfix m-1 p-2">
+        <img class="float-md-start m-2 w-25" id="display-image-url" src="resources/default.jpeg"
+            alt="default item image m-auto">
+        <h2>Deskripsi</h2>
+        <p id="display-detail" class=" m-1">Selama 14 tahun hadir di Indonesia, merek premium cookware ini sudah terjual
+            sebanyak
+            3.500.000
+            unit.
+            <br>
+            <br>
+            Mr Shawn Kim, CEO PT Merdis International, mengatakan bahwa pihaknya sangat senang merayakan hari jadi
+            Happycall Indonesia yang ke-14.
+            <br>
+            <br>
+            Sejak memasuki pasar Indonesia pada 2008, Shawn Kim mengatakan kalau pihaknya memiliki visi untuk
+            menghadirkan gaya hidup yang lebih sehat dan lebih bahagia bagi masyarakat Indonesia.
+        </p>
+    </div>
+    <br>
+    <button id="link-button" class="link-button row">
+        <span class="link-button-text col d-inline-block">
+            <span>B</span><span>u</span><span>y</span><span> </span><span>n</span><span>o</span><span>w</span><span>
+            </span><span>!</span>
+        </span>
+        <div class="col-2">
+            <svg class="link-button-svg" role="presentational" viewBox="0 0 600 600">
+                <defs>
+                    <clipPath id="myClip">
+                        <rect x="0" y="0" width="100%" height="50%" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#myClip)">
+                    <g id="money">
+                        <path
+                            d="M441.9,116.54h-162c-4.66,0-8.49,4.34-8.62,9.83l.85,278.17,178.37,2V126.37C450.38,120.89,446.56,116.52,441.9,116.54Z"
+                            fill="#699e64" stroke="#323c44" stroke-miterlimit="10" stroke-width="14" />
+                        <path
+                            d="M424.73,165.49c-10-2.53-17.38-12-17.68-24H316.44c-.09,11.58-7,21.53-16.62,23.94-3.24.92-5.54,4.29-5.62,8.21V376.54H430.1V173.71C430.15,169.83,427.93,166.43,424.73,165.49Z"
+                            fill="#699e64" stroke="#323c44" stroke-miterlimit="10" stroke-width="14" />
+                    </g>
+                    <g id="creditcard">
+                        <path
+                            d="M372.12,181.59H210.9c-4.64,0-8.45,4.34-8.58,9.83l.85,278.17,177.49,2V191.42C380.55,185.94,376.75,181.57,372.12,181.59Z"
+                            fill="#a76fe2" stroke="#323c44" stroke-miterlimit="10" stroke-width="14" />
+                        <path
+                            d="M347.55,261.85H332.22c-3.73,0-6.76-3.58-6.76-8v-35.2c0-4.42,3-8,6.76-8h15.33c3.73,0,6.76,3.58,6.76,8v35.2C354.31,258.27,351.28,261.85,347.55,261.85Z"
+                            fill="#ffdc67" />
+                        <path d="M249.73,183.76h28.85v274.8H249.73Z" fill="#323c44" />
+                    </g>
+                </g>
+                <g id="wallet">
+                    <path
+                        d="M478,288.23h-337A28.93,28.93,0,0,0,112,317.14V546.2a29,29,0,0,0,28.94,28.95H478a29,29,0,0,0,28.95-28.94h0v-229A29,29,0,0,0,478,288.23Z"
+                        fill="#a4bdc1" stroke="#323c44" stroke-miterlimit="10" stroke-width="14" />
+                    <path
+                        d="M512.83,382.71H416.71a28.93,28.93,0,0,0-28.95,28.94h0V467.8a29,29,0,0,0,28.95,28.95h96.12a19.31,19.31,0,0,0,19.3-19.3V402a19.3,19.3,0,0,0-19.3-19.3Z"
+                        fill="#a4bdc1" stroke="#323c44" stroke-miterlimit="10" stroke-width="14" />
+                    <path d="M451.46,435.79v7.88a14.48,14.48,0,1,1-29,0v-7.9a14.48,14.48,0,0,1,29,0Z" fill="#a4bdc1"
+                        stroke="#323c44" stroke-miterlimit="10" stroke-width="14" />
+                    <path
+                        d="M147.87,541.93V320.84c-.05-13.2,8.25-21.51,21.62-24.27a42.71,42.71,0,0,1,7.14-1.32l-29.36-.63a67.77,67.77,0,0,0-9.13.45c-13.37,2.75-20.32,12.57-20.27,25.77l.38,221.24c-1.57,15.44,8.15,27.08,25.34,26.1l33-.19c-15.9,0-28.78-10.58-28.76-25.93Z"
+                        fill="#7b8f91" />
+                    <path d="M148.16,343.22a6,6,0,0,0-6,6v92a6,6,0,0,0,12,0v-92A6,6,0,0,0,148.16,343.22Z"
+                        fill="#323c44" />
+                </g>
+            </svg>
+        </div>
+    </button>
+    <div id="content">-</div>
+    <script>
+        const displayTitle = document.getElementById('display-title');
+        const displayDetail = document.getElementById('display-detail');
+        const displayImageURL = document.getElementById('display-image-url');
+        const displayLinkURL = document.getElementById('link-button');
+
+        function loadItem() {
+            var xhr = new XMLHttpRequest();
+            var url = "get.php";
+            let data = window.location.href.split('?').pop();
+
+            xhr.onload = function () {
+                const response = JSON.parse((this.responseText + "").replace('\\', '/'));
+                //document.getElementById('content').innerHTML += `${(this.responseText + "").replaceAll('\\/','/')}`;
+                if (response.response == 'True') {
+                    document.title = response.title;
+                    displayTitle.innerHTML = `${response.title}<h4>${response.username}</h4>`;
+                    displayDetail.innerHTML = `${(response.detail + "").replaceAll(/(?:\r\n|\r|\n)/g, '<br>')}`;
+                    displayImageURL.setAttribute('src', response.imageURL);
+                    displayLinkURL.setAttribute('onclick', "window.location.href=\'" + response.linkURL + "\';");
+                } else {
+                    document.body.innerHTML =
+                        `<a class='m-4 mb-0 d-block text-dark text-decoration-none' href='./home.html'>Failed to load items. ${response.response} Please try again.</a><h1 class="m-4 mb-0 mt-0">404</h1><hr>`;
+                }
+            }
+            xhr.open("GET", url + "?" + data, true);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.send(data);
+        }
+    </script>
+
+</body>
+
+</html>

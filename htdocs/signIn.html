@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.js"></script>
+    <script src="generateAuthToken.js"></script>
+    <style>
+        body {
+            background-color: aquamarine;
+        }
+
+        .form {
+            width: 60vw;
+            min-width: 7.5cm;
+            height: fit-content;
+            padding: 20px;
+            border-radius: 1cm;
+            background-color: aliceblue;
+            margin-inline-start: calc(100vw-(max(60vw, 7.5cm))/2);
+            margin-top: calc((100vh - 15cm)/2);
+            display: block;
+        }
+
+        .img {
+            width: 5.5cm;
+            height: 4cm;
+            border-radius: 1cm;
+        }
+
+        .background-image {
+            position: fixed;
+            left: -0.1cm;
+            width: 40cm;
+            height: 15cm;
+            z-index: -1;
+            margin-inline-start: calc((100vw - 40cm)/2);
+            margin-top: calc((100vh - 15cm)/2);
+        }
+
+        label {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body class="m-3">
+    <img src="resources/abstract wave2.png" class="background-image" alt="wave2">
+    <form method="GET" class="container needs-validation form" novalidate>
+        <a href="home.html"><img src="resources/The_store2.png" alt="the_storeLogo" class="img m-auto d-block"></a>
+        <br>
+
+        <div class="row mb-3">
+            <label for="inputUsername" class="col-sm-3 col-form-label">Username</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="inputUsername" value="" required>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputEmail" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Example@gmail.com"
+                    aria-label="Example@gmail.com" value="">
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputPassword" class="col-sm-3 col-form-label">Password</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="inputPassword" value="" onkeyup='check();' required>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="confirmPassword" class="col-sm-3 col-form-label">Confirm Password</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="confirmPassword" value="" onkeyup='check();' required>
+                <span id='message'></span>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputTelp" class="col-sm-3 col-form-label">No Telp</label>
+            <div class="col-sm-9">
+                <input type="tel" class="form-control" id="inputTelp" pattern="[0-9]{10,13}">
+                <div class="invalid-feedback">
+                    10-13 digits.
+                </div>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="inputImageURL" class="col-sm-3 col-form-label">Profile Icon URL</label>
+            <div class="col-sm-9">
+                <input type="url" class="form-control" id="inputImageURL" value="" onkeyup='check();'>
+                <div class="valid-feedback">
+                    Confirmed!
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+        </div>
+        <br>
+        <input type="button" onclick="signinAccount()" class="btn btn-primary m-auto d-block" value="Sign In" />
+        <div class="m-auto" id="response"></div>
+    </form>
+    <script>
+        const inputUsername = document.getElementById("inputUsername");
+        const inputPassword = document.getElementById('inputPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const inputImageURL = document.getElementById('inputImageURL');
+        const message = document.getElementById('message');
+
+        function accept(element) {
+            element.style.color = 'green';
+            element.innerHTML = 'Matching';
+        }
+
+        function reject(element) {
+            element.style.color = 'red';
+            element.innerHTML = 'Wrong password';
+        }
+
+        function signinAccount() {
+            let u = inputUsername.value;
+            let p = inputPassword.value;
+            let d = (new Date()).getTime();
+            let a = generateUndatedAuthToken(u, p);
+            let i = inputImageURL.value;
+            var xhr = new XMLHttpRequest();
+            var url = "signin.php";
+            let data = "username=" + u + "&authToken=" + a + "&lastLogin=" + d + "&imageURL=" + i;
+            xhr.onload = function () {
+                const response = this.responseText;
+                if (response == 'True') {
+                    document.getElementById("response").innerHTML =
+                        "<a class='text-decoration-none text-dark' href='./login.html'>Registration Succesful!</a>";
+                    window.location.replace('./login.html');
+                } else {
+                    document.getElementById("response").innerHTML =
+                        "<a class='text-decoration-none text-dark' href='./signIn.html'>Registration failed due to ${response} Please try again.</a>";
+                }
+            }
+            xhr.open("GET", url + "?" + data, true);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.send(data);
+        }
+
+        function check() {
+            if (inputPassword.value == confirmPassword.value) {
+                accept(message);
+            } else {
+                reject(message);
+            }
+        }
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.js"></script>
+
+    <style>
+        body {
+            --carousel-background-side-offset: 0.5cm;
+            --carousel-background-width: calc(100vw - 2*var(--carousel-background-side-offset));
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
+        .sidebar {
+            height: 100%;
+            width: fit-content;
+            position: fixed;
+            z-index: 3;
+            margin-left: -100%;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
+
+        .sidebar img {
+            margin: auto;
+            display: block;
+        }
+
+        .sidebar a {
+            padding: 8px 32px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition-duration: 0.3s;
+            width: 5cm;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidebar .close-button {
+            color: white;
+            position: absolute;
+            width: fit-content !important;
+            top: 0;
+            right: 0.3cm;
+            margin: 0;
+            padding: 8px 8px 8px 8px;
+            font-size: 50px;
+            margin-left: 50px;
+        }
+
+        .topbar {
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+            overflow-x: hidden;
+            margin-top: -100%;
+        }
+
+        .topbar .close-button {
+            color: white;
+            position: absolute;
+            top: 0;
+            right: 0.5cm;
+            font-size: 50px;
+            margin-left: 50px;
+        }
+
+        .topbar a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition-duration: 0.3s;
+        }
+
+        .topbar a:hover {
+            color: #f1f1f1;
+        }
+
+        .avatar {
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+        }
+
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            transition-duration: 0.7s;
+            z-index: 2;
+            margin-top: 0;
+        }
+
+        .openbtn:hover {
+            background-color: #444;
+        }
+
+        #greeting {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: min(calc(3vw + 2px), 30px);
+            align-items: center;
+            margin-inline-start: min(0.75cm, 3vw);
+        }
+
+        .content {
+            margin-top: 2.2cm;
+        }
+
+        .carousel {
+            top: -6.25cm;
+            margin: auto;
+            width: 16cm;
+            height: 8cm;
+            z-index: 0;
+        }
+
+        .carousel-inner {
+            width: 16cm;
+            height: 8cm;
+            z-index: 0;
+        }
+
+        .carousel-item {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .item-button {
+            text-decoration: none;
+            color: black;
+            width: fit-content;
+        }
+
+        .item-button img {
+            height: 6cm;
+        }
+
+        .item-button:hover {
+            background-color: none;
+            text-decoration: none;
+        }
+
+        .card {
+            width: 6cm;
+        }
+
+        #content .container-fluid {
+            width: fit-content;
+        }
+
+        @font-face {
+            font-family: Kanit;
+            src: url(sansation_light.woff);
+        }
+
+        .container-margin {
+            padding: 1cm;
+        }
+
+        .background-image {
+            position: fixed;
+            z-index: -2;
+        }
+
+        .carousel-background {
+            position: relative;
+            top: 3cm;
+            height: 10.5cm;
+            background-color: #444;
+            z-index: 0;
+            vertical-align: middle;
+        }
+
+        .carousel-background img {
+            vertical-align: middle;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: fit-content;
+            max-height: 10.5cm;
+            max-width: 35.2cm;
+            margin-inline-start: max(calc((100vw - 35.2cm)/2), var(--carousel-background-side-offset));
+            width: var(--carousel-background-width);
+        }
+
+        .category-button {
+            font-size: larger;
+        }
+    </style>
+</head>
+
+<body onload="setGreeting(); loadItems();" onscroll="closeNavbar()">
+    <img src="resources/Blue-Abstract-Design-PNG-Picture.png" class="background-image" alt="back1">
+    <div class="carousel-background">
+        <img src="resources/abstract neuron2.png" alt="neuron">
+    </div>
+    <div id="carouselExampleInterval" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner Eimg">
+            <div class="carousel-item active bg-dark h-100 m-auto text-center" data-bs-interval="4000">
+                <h1 class="d-flex text-light m-auto" style="width: 9cm; height: 1cm; "><br> Grand Opening <br> THE_STORE is now Online</h1>
+            </div>
+            <div class="carousel-item bg-dark h-100 m-auto text-center" data-bs-interval="4000">
+                <h1 class="d-flex text-light m-auto" style="width: fit-content; height: fit-content; font-family: monospace; font-size: 1.2cm; ">
+                    <br> For the next 3 days <br>All items Discount  <br> for 40%</h1>
+            </div>
+            <div class="carousel-item bg-dark h-100 m-auto text-center" data-bs-interval="4000">
+                <h1 class="d-flex text-light m-auto" style="width: fit-content; height: fit-content; font-family:cursive; font-size: 1.2cm; ">
+                    <br><br>Enjoy Shopping!!!</h1>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-button" onclick="closeSidebar()">×</a>
+        <img id="sidebar-avatar" src="resources/AvatarMale.png" class="mb-4 rounded-circle" alt="Avatar"
+            style="width: 3cm; height: 3cm;  ">
+        <a href="login.html">Login</a>
+        <a href="signIn.html">Sign In</a>
+        <a id="profile-link" href="#">Profile</a>
+        <a id="add-item-link" href="#">Add Item</a>
+        <a href="AboutUs.html">About Us</a>
+    </div>
+
+    <div class="topbar" id="topbar">
+        <a href="javascript:void(0)" class="close-button" onclick="closeTopbar()">×</a>
+        <div class="row" id="types">
+        </div>
+    </div>
+
+    <nav id="navbar" class="navbar navbar-expand-lg bg-light">
+        <a class="ms-3" href="home.html">
+            <img src="resources/The_StoreLogo3.png" alt="The_Store"
+                style="width: fit-content; height: 2cm; padding: 10px;">
+        </a>
+        <h1 class="greeting flex-fill" id="greeting"></h1>
+        <button class="bg-light category-button" style="border: none; " onclick="openTopbar()">Kategori</button>
+        <button class="bg-light border-0 me-3" onclick="openSidebar()">
+            <a><img src="resources/AvatarMale.png" alt="Avatar" class="avatar rounded-circle" id="navbar-avatar"></a>
+        </button>
+    </nav>
+
+    <div id="content">
+        <br>
+    </div>
+    <div id="response"></div>
+    <script>
+        const sidebar = document.getElementById("sidebar");
+        const topbar = document.getElementById("topbar");
+        const navbar = document.getElementById("navbar");
+        const sidebarAvatar = document.getElementById("sidebar-avatar");
+        const navbarAvatar = document.getElementById("navbar-avatar");
+        const profileLink = document.getElementById("profile-link");
+        const addItemLink = document.getElementById("add-item-link");
+        var isSidebarOpened = false;
+        var isTopbarOpened = false;
+        var prevScrollPosition = window.pageYOffset;
+        const greeting = document.getElementById("greeting");
+        const username = sessionStorage.getItem("username");
+        const avatar = sessionStorage.getItem("avatar");
+        const content = document.getElementById('content');
+        const types = document.getElementById('types');
+        var numberOfItemColumns = 5;
+        var numberOfItemRows = 999;
+        var numberOfTypeColumns = 3;
+        var numberOfTypeRows = 999;
+
+        function setGreeting() {
+            if (username == null) {
+                greeting.innerHTML = "Welcome to the jungle!";
+                sidebarAvatar.setAttribute("src", "resources/AvatarMale.png");
+                navbarAvatar.setAttribute("src", "resources/AvatarMale.png");
+                profileLink.setAttribute("href", "login.html");
+                addItemLink.setAttribute("href", "login.html");
+                return;
+            }
+            greeting.innerHTML = "Welcome back, " + username;
+            sidebarAvatar.setAttribute("src", avatar);
+            navbarAvatar.setAttribute("src", avatar);
+            profileLink.setAttribute("href", "Profile.html");
+            addItemLink.setAttribute("href", "AddItems.html");
+        }
+
+        function loadItems() {
+            /*let value = window.location.href;
+            value = value.split('?');
+            if(value.length > 1){
+                let auth = value.pop().split('&');
+                sessionStorage['T_username'] = auth[0].split('=').pop();
+                sessionStorage['T_authToken'] = auth[1].split('=').pop();
+            }*/
+            //rencananya kami mau buat cara untuk login lewat urlnya, seperti
+            //kalau github atau discord bisa pakai auth token, tapi setelah
+            //dipiki-pikir lagi, ya, agak nggak cocok untuk aplikasi yang hanya
+            //menampilkan iklan. github juga loginnya untuk menyimpan file, jadi
+            //berguna authtoken jika mau cepat login. tapi web ini hanya ada
+            //menambah item yang perlu login, jadi tidak terlalu penting.
+
+            var xhr = new XMLHttpRequest();
+            var url = "load.php";
+            let data = "username=" + username;
+            document.getElementById('content').innerHTML += "<hr><hr>";
+
+            xhr.onload = function () {
+                const response = JSON.parse(this.responseText);
+                const loggedIn = (sessionStorage['username'] == null) ? 0 : 1;
+                document.getElementById('content').innerHTML += "<hr><hr>";
+                let topbarContent = `<div class="col-4 mt-3 mb-1">`;
+                let mainContent = ``;
+                if (response.response == "True") {
+                    numberOfTypeRows = Math.floor((response.types.length) / numberOfTypeColumns + 1);
+                    for (let a = 0; a < response.types.length - 1 + loggedIn; a++) {
+                        let type = response.types[a];
+                        topbarContent += `<a href="home.html#${type.typeName}">${type.typeName}</a>`;
+                        mainContent += `
+                            <h2 class="ms-3" id="${type.typeName}">${type.typeName}</h2>
+                            <hr>
+                            <table class="container-fluid container-margin">
+                                <tr>`;
+                        if (a % numberOfTypeRows == numberOfTypeRows - 1) {
+                            topbarContent += `</div><div class="col-4 mt-3 mb-1">`;
+                        }
+                        for (let b = 0; b < type.items.length; b++) {
+                            let item = type.items[b];
+                            mainContent += `
+                            <td>
+                                <a href="itemDetails.html?id=${item.itemID}" class="item-button">
+                                    <div class="card">
+                                        <img src="${item.imageURL}" class="card-img-top" alt="${item.title}">
+                                        <div class="card-body">
+                                            <p class="card-text">${item.title}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </td>
+                            `;
+                            if (b % numberOfItemColumns == numberOfItemColumns - 1) {
+                                mainContent += `</tr><tr>`;
+                            }
+                        }
+                        mainContent += `</table>`;
+                    }
+                    types.innerHTML = topbarContent + `</div>`;
+                    content.innerHTML = mainContent + `</tr></table><br>`;
+                } else {
+                    content.innerHTML +=
+                        `<a href='./login.html'>Failed to load items. ${response.response} Please try again.</a> <br><hr>`;
+                }
+                console.log(this.responseText);
+            }
+            xhr.open("GET", url + "?" + data, true);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.send(data);
+        }
+
+        function openSidebar() {
+            sidebar.style.transitionDuration = "0.5s";
+            sidebar.style.marginLeft = "0";
+            if (isTopbarOpened) {
+                closeTopbar();
+            }
+            isSidebarOpened = true;
+        }
+
+        function closeSidebar() {
+            sidebar.style.transitionDuration = "0.2s";
+            sidebar.style.marginLeft = "-100%";
+            isSidebarOpened = false;
+        }
+
+        function openTopbar() {
+            topbar.style.transitionDuration = "0.5s";
+            topbar.style.marginTop = "2.2cm";
+            if (isSidebarOpened) {
+                closeSidebar();
+            }
+            isTopbarOpened = true;
+        }
+
+        function closeTopbar() {
+            topbar.style.transitionDuration = "0.2s";
+            topbar.style.marginTop = "-100%";
+            isTopbarOpened = false;
+        }
+
+        function closeNavbar() {
+            var currentScrollPos = window.pageYOffset;
+            if (isTopbarOpened) {
+                navbar.style.transitionDelay = "0.15s";
+            } else {
+                navbar.style.transitionDelay = "0s";
+            }
+            if (prevScrollPosition >= currentScrollPos) {
+                navbar.style.marginTop = "0";
+            } else {
+                navbar.style.marginTop = "-100%";
+                closeTopbar();
+            }
+            prevScrollPosition = currentScrollPos;
+        }
+    </script>
+</body>
+
+</html>
